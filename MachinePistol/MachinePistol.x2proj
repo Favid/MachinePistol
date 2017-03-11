@@ -19,13 +19,13 @@
     <Folder Include="Src\MachinePistol\Classes\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Config\FavidMachinePistolAbility.ini">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="Config\XComClassData.ini">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Config\XComFavidMachinePistol.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComFavidMachinePistolAbility.ini">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Config\XComGameData.ini">
@@ -44,6 +44,9 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Src\MachinePistol\Classes\X2DownloadableContentInfo_MachinePistol.uc" />
+    <Content Include="Src\MachinePistol\Classes\X2Effect_Yellowjacket.uc">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Src\MachinePistol\Classes\X2Item_MachinePistol.uc">
       <SubType>Content</SubType>
     </Content>

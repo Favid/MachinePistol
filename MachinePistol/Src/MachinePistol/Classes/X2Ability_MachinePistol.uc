@@ -6,10 +6,14 @@ static function array<X2DataTemplate> CreateTemplates()
 	
 	Templates.AddItem(FireMachinePistol());
 	Templates.AddItem(MachineSpray());
+	Templates.AddItem(Yellowjacket());
 
 	return Templates;
 }
 
+// Fire Machine Pistol
+// (AbilityName="FW_FireMachinePistol",		ApplyToWeaponSlot=eInvSlot_SecondaryWeapon)
+// Fire 3 shots at a target with your secondary weapon.
 static function X2AbilityTemplate FireMachinePistol()
 {
 	local X2AbilityTemplate                 Template;	
@@ -85,6 +89,9 @@ static function X2AbilityTemplate FireMachinePistol()
 	return Template;	
 }
 
+// Machine Spray
+// (AbilityName="FW_MachineSpray",		ApplyToWeaponSlot=eInvSlot_SecondaryWeapon)
+// Fire 4 shots at a target with your secondary weapon.
 static function X2AbilityTemplate MachineSpray()
 {
 	local X2AbilityTemplate                 Template;	
@@ -161,4 +168,33 @@ static function X2AbilityTemplate MachineSpray()
 	Template.OverrideAbilities.AddItem('FW_FireMachinePistol');
 
 	return Template;	
+}
+
+// Yellowjacket
+// (AbilityName="FW_Yellowjacket",		ApplyToWeaponSlot=eInvSlot_SecondaryWeapon)
+// Shots fired by your machine pistol now ignore armor. Passive.
+static function X2AbilityTemplate Yellowjacket()
+{
+	local X2AbilityTemplate					Template;
+	local X2Effect_Yellowjacket				ArmorPiercingBonus;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'FW_Yellowjacket');
+	
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_fanfire";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bIsPassive = true;
+	Template.bCrossClassEligible = false;
+
+	ArmorPiercingBonus = new class 'X2Effect_Yellowjacket';
+	ArmorPiercingBonus.BuildPersistentEffect (1, true, false);
+	ArmorPiercingBonus.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	Template.AddTargetEffect (ArmorPiercingBonus);
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	
+	return Template;		
 }
