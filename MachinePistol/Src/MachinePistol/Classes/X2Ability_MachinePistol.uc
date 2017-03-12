@@ -7,6 +7,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(FireMachinePistol());
 	Templates.AddItem(MachineSpray());
 	Templates.AddItem(Yellowjacket());
+	Templates.AddItem(HeavyRounds());
+	Templates.AddItem(SnapShotDamagePenalty());
 
 	return Templates;
 }
@@ -194,6 +196,64 @@ static function X2AbilityTemplate Yellowjacket()
 	ArmorPiercingBonus.BuildPersistentEffect (1, true, false);
 	ArmorPiercingBonus.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	Template.AddTargetEffect (ArmorPiercingBonus);
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	
+	return Template;		
+}
+
+// Heavy Rounds
+// (AbilityName="FW_HeavyRounds",		ApplyToWeaponSlot=eInvSlot_SecondaryWeapon)
+// Shots fired by your machine pistol now deal 1 additional damage. Passive.
+static function X2AbilityTemplate HeavyRounds()
+{
+	local X2AbilityTemplate					Template;
+	local X2Effect_HeavyRounds				DamageBonus;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'FW_HeavyRounds');
+	
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_fanfire";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bIsPassive = true;
+	Template.bCrossClassEligible = false;
+
+	DamageBonus = new class 'X2Effect_HeavyRounds';
+	DamageBonus.BuildPersistentEffect (1, true, false);
+	DamageBonus.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	Template.AddTargetEffect (DamageBonus);
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	
+	return Template;		
+}
+
+// Snapshot Damage Penalty
+// (AbilityName="FW_SnapShotDamagePenalty",		ApplyToWeaponSlot=eInvSlot_PrimaryWeapon)
+// Shots fired by your primary weapon deal slightly less damage. Passive.
+static function X2AbilityTemplate SnapShotDamagePenalty()
+{
+	local X2AbilityTemplate					Template;
+	local X2Effect_SnapShotDamagePenalty				DamageMalus;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'FW_SnapShotDamagePenalty');
+	
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_fanfire";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bIsPassive = true;
+	Template.bCrossClassEligible = false;
+
+	DamageMalus = new class 'X2Effect_SnapShotDamagePenalty';
+	DamageMalus.BuildPersistentEffect (1, true, false);
+	//DamageMalus.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	Template.AddTargetEffect (DamageMalus);
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	
 	return Template;		

@@ -9,7 +9,7 @@ function int GetExtraArmorPiercing(XComGameState_Effect EffectState, XComGameSta
 	{
 		if (AbilityState.SourceWeapon == EffectState.ApplyEffectParameters.ItemStateObjectRef)
 		{
-			return 9999;
+			return 9999; // TODO config
 		}
 	}
 

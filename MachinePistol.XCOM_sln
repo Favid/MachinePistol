@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # XCOM ModBuddy Solution File, Format Version 11.00
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{5DAE07AF-E217-45C1-8DE7-FF99D6011E8A}") = "MachinePistol", "MachinePistol\MachinePistol.x2proj", "{A6928C70-9711-42D9-B144-0239A27C6FBB}"
+Project("{5DAE07AF-E217-45C1-8DE7-FF99D6011E8A}") = "MachinePistol", "MachinePistol\MachinePistol.x2proj", "{C3837131-6931-43CF-B0E1-499A39AE8829}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Default|XCOM 2 = Default|XCOM 2
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A6928C70-9711-42D9-B144-0239A27C6FBB}.Default|XCOM 2.ActiveCfg = Default|XCOM 2
-		{A6928C70-9711-42D9-B144-0239A27C6FBB}.Default|XCOM 2.Build.0 = Default|XCOM 2
+		{C3837131-6931-43CF-B0E1-499A39AE8829}.Default|XCOM 2.ActiveCfg = Default|XCOM 2
+		{C3837131-6931-43CF-B0E1-499A39AE8829}.Default|XCOM 2.Build.0 = Default|XCOM 2
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

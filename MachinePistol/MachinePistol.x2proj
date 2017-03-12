@@ -44,6 +44,12 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Src\MachinePistol\Classes\X2DownloadableContentInfo_MachinePistol.uc" />
+    <Content Include="Src\MachinePistol\Classes\X2Effect_HeavyRounds.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\MachinePistol\Classes\X2Effect_SnapShotDamagePenalty.uc">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Src\MachinePistol\Classes\X2Effect_Yellowjacket.uc">
       <SubType>Content</SubType>
     </Content>
